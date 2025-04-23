@@ -6,15 +6,21 @@ namespace lab5
     public partial class Form1 : Form
     {
         Random rnd = new();
-        GreenCircle myCircle; // создадим поле под наш прямоугольник
+        GreenCircle firstCircle;
+        GreenCircle secondCircle;
+        GreenCircle thirdCircle;
         List<BaseObject> objects = new();
         Player player;
         Marker marker;
+        int score = 0;
         public Form1()
         {
             InitializeComponent();
 
-            myCircle = new GreenCircle(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
+            firstCircle = new GreenCircle(rnd.Next() % pbMain.Width, rnd.Next() % pbMain.Height, 0);
+            secondCircle = new GreenCircle(rnd.Next() % pbMain.Width, rnd.Next() % pbMain.Height, 0);
+            thirdCircle = new GreenCircle(rnd.Next() % pbMain.Width, rnd.Next() % pbMain.Height, 0);
+
             player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
 
             player.OnOverlap += (p, obj) =>
@@ -30,12 +36,15 @@ namespace lab5
 
             player.OnGCOverlap += (gc) =>
             {
-                myCircle.X = rnd.Next() % pbMain.Width;
-                myCircle.Y = rnd.Next() % pbMain.Height;
+                gc.X = rnd.Next() % pbMain.Width;
+                gc.Y = rnd.Next() % pbMain.Height;
+                score += 1;
             };
 
             objects.Add(player);
-            objects.Add(myCircle);
+            objects.Add(firstCircle);
+            objects.Add(secondCircle);
+            objects.Add(thirdCircle);
         }
 
         private void pbMain_Paint(object sender, PaintEventArgs e)
@@ -59,6 +68,8 @@ namespace lab5
                 g.Transform = obj.GetTransform();
                 obj.Render(g);
             }
+
+            txtScore.Text = String.Format("Очки: {0}", score);
         }
         public void updatePlayer()
         {

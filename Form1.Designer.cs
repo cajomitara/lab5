@@ -32,6 +32,8 @@
             pbMain = new PictureBox();
             timer1 = new System.Windows.Forms.Timer(components);
             txtLog = new RichTextBox();
+            label1 = new Label();
+            txtScore = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)pbMain).BeginInit();
             SuspendLayout();
             // 
@@ -48,23 +50,42 @@
             // timer1
             // 
             timer1.Enabled = true;
-            timer1.Interval = 30;
+            timer1.Interval = 5;
             timer1.Tick += timer1_Tick;
             // 
             // txtLog
             // 
-            txtLog.Location = new Point(576, 12);
+            txtLog.Location = new Point(576, 44);
             txtLog.Name = "txtLog";
             txtLog.ReadOnly = true;
-            txtLog.Size = new Size(312, 529);
+            txtLog.Size = new Size(312, 497);
             txtLog.TabIndex = 1;
             txtLog.Text = "";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(723, 12);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 20);
+            label1.TabIndex = 2;
+            // 
+            // txtScore
+            // 
+            txtScore.Location = new Point(576, 9);
+            txtScore.Name = "txtScore";
+            txtScore.ReadOnly = true;
+            txtScore.Size = new Size(312, 29);
+            txtScore.TabIndex = 3;
+            txtScore.Text = "";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(900, 553);
+            Controls.Add(txtScore);
+            Controls.Add(label1);
             Controls.Add(txtLog);
             Controls.Add(pbMain);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
@@ -73,6 +94,7 @@
             Text = "Обработка событий";
             ((System.ComponentModel.ISupportInitialize)pbMain).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -80,5 +102,7 @@
         private PictureBox pbMain;
         private System.Windows.Forms.Timer timer1;
         private RichTextBox txtLog;
+        private Label label1;
+        private RichTextBox txtScore;
     }
 }
