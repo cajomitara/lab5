@@ -34,6 +34,8 @@
             txtLog = new RichTextBox();
             label1 = new Label();
             txtScore = new RichTextBox();
+            txtTime = new RichTextBox();
+            gameOverTimer = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)pbMain).BeginInit();
             SuspendLayout();
             // 
@@ -75,19 +77,36 @@
             txtScore.Location = new Point(576, 9);
             txtScore.Name = "txtScore";
             txtScore.ReadOnly = true;
-            txtScore.Size = new Size(312, 29);
+            txtScore.Size = new Size(147, 29);
             txtScore.TabIndex = 3;
             txtScore.Text = "";
+            // 
+            // txtTime
+            // 
+            txtTime.Location = new Point(729, 9);
+            txtTime.Name = "txtTime";
+            txtTime.ReadOnly = true;
+            txtTime.Size = new Size(159, 29);
+            txtTime.TabIndex = 4;
+            txtTime.Text = "";
+            // 
+            // gameOverTimer
+            // 
+            gameOverTimer.Enabled = true;
+            gameOverTimer.Interval = 1000;
+            gameOverTimer.Tick += gameOverTimer_Tick;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(900, 553);
+            Controls.Add(txtTime);
             Controls.Add(txtScore);
             Controls.Add(label1);
             Controls.Add(txtLog);
             Controls.Add(pbMain);
+            Cursor = Cursors.Hand;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
@@ -104,5 +123,7 @@
         private RichTextBox txtLog;
         private Label label1;
         private RichTextBox txtScore;
+        private RichTextBox txtTime;
+        private System.Windows.Forms.Timer gameOverTimer;
     }
 }

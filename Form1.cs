@@ -13,13 +13,31 @@ namespace lab5
         Player player;
         Marker marker;
         int score = 0;
+        int time = 15;
         public Form1()
         {
             InitializeComponent();
 
-            firstCircle = new GreenCircle(rnd.Next() % pbMain.Width, rnd.Next() % pbMain.Height, 0);
-            secondCircle = new GreenCircle(rnd.Next() % pbMain.Width, rnd.Next() % pbMain.Height, 0);
-            thirdCircle = new GreenCircle(rnd.Next() % pbMain.Width, rnd.Next() % pbMain.Height, 0);
+            firstCircle = new GreenCircle(
+                rnd.Next() % pbMain.Width,
+                rnd.Next() % pbMain.Height,
+                0,
+                pbMain.Width,
+                pbMain.Height);
+
+            secondCircle = new GreenCircle(
+                rnd.Next() % pbMain.Width,
+                rnd.Next() % pbMain.Height,
+                0,
+                pbMain.Width,
+                pbMain.Height);
+
+            thirdCircle = new GreenCircle(
+                rnd.Next() % pbMain.Width,
+                rnd.Next() % pbMain.Height,
+                0,
+                pbMain.Width,
+                pbMain.Height);
 
             player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
 
@@ -53,6 +71,8 @@ namespace lab5
             g.Clear(Color.White);
 
             updatePlayer();
+
+
 
             foreach (var obj in objects.ToList())
             {
@@ -104,6 +124,11 @@ namespace lab5
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
+            foreach (var obj in objects.ToList())
+            {
+                obj.Update();
+            }
+
             pbMain.Invalidate();
         }
 
@@ -117,6 +142,35 @@ namespace lab5
 
             marker.X = e.X;
             marker.Y = e.Y;
+        }
+
+        private void gameOverTimer_Tick(object sender, EventArgs e)
+        {
+            txtTime.Text = "Время: " + (time).ToString();
+            time -= 1;
+
+
+
+            if (time < 0)
+            {
+                gameOverTimer.Enabled = false;
+                timer1.Enabled = false;
+                DialogResult result = MessageBox.Show(
+                    "Ваш результат – " + score.ToString() +
+                    "\nИгра окончена. Хотите сыграть ещё раз?",
+                    "Конец игры",
+                    MessageBoxButtons.YesNo
+                );
+                if (result == DialogResult.Yes)
+                {
+                    Application.Restart();
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
         }
     }
 }

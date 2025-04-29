@@ -67,5 +67,6 @@ namespace lab5.Objects
                 OnOverlap(this, obj);
             }
         }
+        public virtual void Update() { }
     }
 }
