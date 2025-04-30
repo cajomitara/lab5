@@ -9,31 +9,31 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace lab5.Objects
 {
-    class GreenCircle : BaseObject
+    class RedCircle : BaseObject
     {
         public float size = 30;
         Random rnd = new();
         int areaWidth;
         int areaHeight;
-        public GreenCircle(float x, float y, float angle, int areaWidth, int areaHeight) : base(x, y, angle)
+        public RedCircle(float x, float y, float angle, int areaWidth, int areaHeight) : base(x, y, angle)
         {
             this.areaWidth = areaWidth;
             this.areaHeight = areaHeight;
         }
         public override void Update()
         {
-            size -= 0.25f;
+            size += 0.3f;
 
             if (size <= 0)
             {
                 X = rnd.Next(areaWidth);
                 Y = rnd.Next(areaHeight);
-                size = 40 + rnd.Next(60);
+                size = 20 + rnd.Next(60);
             }
         }
         public override void Render(Graphics g)
         {
-            g.FillEllipse(new SolidBrush(Color.FromArgb(255, 144, 238, 144)), -(size / 2), -(size / 2), size, size);
+            g.FillEllipse(new SolidBrush(Color.FromArgb(128, 255, 0, 0)), -(size / 2), -(size / 2), size, size);
         }
         public override GraphicsPath GetGraphicsPath()
         {

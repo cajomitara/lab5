@@ -110,7 +110,7 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Обработка событий";
+            Text = "БЕГИ, ФОРЕСТ, БЕГИ!";
             ((System.ComponentModel.ISupportInitialize)pbMain).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +12,8 @@ namespace lab5.Objects
     {
         public Action<Marker> OnMarkerOverlap;
         public Action<GreenCircle> OnGCOverlap;
+        public Action<RedCircle> OnRCOverlap;
+        public Action<Enemy> OnEnemyOverlap;
         public float vX, vY;
         public Player(float x, float y, float angle) : base(x, y, angle)
         {
@@ -20,7 +23,7 @@ namespace lab5.Objects
         public override void Render(Graphics g)
         {
             g.FillEllipse(
-                new SolidBrush(Color.Gold),
+                new SolidBrush(Color.Chartreuse),
                 -15, -15,
                 30, 30
             );
@@ -50,6 +53,14 @@ namespace lab5.Objects
             else if (obj is GreenCircle)
             {
                 OnGCOverlap(obj as GreenCircle);
+            }
+            else if (obj is RedCircle)
+            {
+                OnRCOverlap(obj as RedCircle);
+            }
+            else if (obj is Enemy)
+            {
+                OnEnemyOverlap(obj as Enemy);
             }
         }
     }
